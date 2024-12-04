@@ -1,2 +1,2 @@
-# c-
+# c++
 Created for c++ practice
