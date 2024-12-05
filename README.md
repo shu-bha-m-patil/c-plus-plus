@@ -1,2 +1,2 @@
-# DSA
-Created for DSA practice
+# C++
+Created for C++ practice
