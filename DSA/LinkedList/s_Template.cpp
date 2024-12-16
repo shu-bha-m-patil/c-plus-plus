@@ -3,16 +3,11 @@
 struct LinkedList
 {
 	int _iData;
-	LinkedList* _nextNode;
+	LinkedList* _next;
 	LinkedList(int value)
 	{
 		_iData = value;
-		_nextNode = NULL;
-	}
-	
-	~LinkedList()
-	{
-
+		_next = NULL;
 	}
 };
 
@@ -26,12 +21,12 @@ LinkedList* InsertAtTheEnd(LinkedList* iHead, int iValue)
 	}
 
 	LinkedList* tempNode = iHead;
-	while (NULL != tempNode->_nextNode)
+	while (NULL != tempNode->_next)
 	{
-		tempNode = tempNode->_nextNode;
+		tempNode = tempNode->_next;
 	}
 
-	tempNode->_nextNode = newNode;
+	tempNode->_next = newNode;
 	return iHead;
 }
 
@@ -41,7 +36,7 @@ void DisplayLinkedList(LinkedList* iHead)
 	while (NULL != node)
 	{
 		std::cout << node->_iData << " ";
-		node = node->_nextNode;
+		node = node->_next;
 	}
 }
 
