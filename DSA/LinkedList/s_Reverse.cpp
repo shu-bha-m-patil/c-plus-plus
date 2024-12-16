@@ -41,7 +41,7 @@ void DisplayLinkedList(LinkedList* iHead)
     std::cout << std::endl;
 }
 
-LinkedList* Reverse(LinkedList* iHead)
+LinkedList* SwappingPointerReverse(LinkedList* iHead)
 {
     if(iHead == nullptr || iHead->_next == nullptr) return iHead;
 
@@ -58,6 +58,31 @@ LinkedList* Reverse(LinkedList* iHead)
     return prev;
 }
 
+LinkedList* TailReverseRecurcive(LinkedList* curr, LinkedList*& oHead)
+{
+    if(curr->_next == nullptr)
+    {
+        oHead = curr;
+        return curr;
+    }
+
+	LinkedList* tail = TailReverseRecurcive(curr->_next, oHead);
+    tail->_next = curr;
+    return curr;
+}
+
+
+LinkedList* FrontReverseRecursion(LinkedList* ihead, LinkedList*& iPrev)
+{
+	if(ihead == nullptr) 
+		return iPrev;
+
+	LinkedList* nextNode = ihead->_next;
+	ihead->_next = iPrev;
+    return FrontReverseRecursion(nextNode, ihead);;
+}
+
+
 int main()
 {
 	LinkedList* head = NULL;
@@ -67,7 +92,18 @@ int main()
 	head = InsertAtTheEnd(head, 4);
 	head = InsertAtTheEnd(head, 5);
 	DisplayLinkedList(head);
-	head = Reverse(head);
+
+	head = SwappingPointerReverse(head);
 	DisplayLinkedList(head);
+
+    LinkedList* newHead = nullptr;
+	head = TailReverseRecurcive(head, newHead);
+	head->_next = nullptr;
+	DisplayLinkedList(newHead);
+
+	head = nullptr;
+	head = FrontReverseRecursion(newHead, head);
+	DisplayLinkedList(head);
+
 	return 0;
 }
