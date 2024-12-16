@@ -58,15 +58,13 @@ LinkedList* DeleteTail(LinkedList* iHead)
 		return nullptr;
 	}
 
-    LinkedList* tail = nullptr;
     LinkedList* curr = iHead;
-    while (curr != NULL)
+    while (curr->_next != NULL)
     {
-        tail = curr->_prev;
         curr = curr->_next;
     }
-    delete tail->_next;
-    tail->_next = nullptr;
+    curr->_prev->_next = nullptr;
+    delete curr;
 	return iHead;
 }
 
