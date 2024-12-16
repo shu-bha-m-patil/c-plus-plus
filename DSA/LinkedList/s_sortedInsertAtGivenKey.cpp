@@ -38,30 +38,20 @@ LinkedList* InsertAtTheEnd(LinkedList* iHead, int iValue)
 LinkedList* InsertAtGivenKey(LinkedList* iHead, int iData)
 {
 	LinkedList* newNode = new LinkedList(iData);
-	if(iHead == NULL) return newNode;
-
-    if(iData < iHead->_iData)
-    {
-        newNode->_next = iHead;
-        return newNode;
-    }
+	if(iHead == NULL || iData < iHead->_iData) 
+	{
+		newNode->_next = iHead;
+		return newNode;
+	}
 
 	LinkedList* curr = iHead;
-    while (curr != nullptr)
+    while (curr->_next != nullptr && curr->_next->_iData < iData)
     {
-        if(curr->_iData < iData)
-        {
-            LinkedList* tempNode = curr->_next;
-            curr->_next = newNode;
-            newNode->_next = tempNode;
-        }
-        else
-        {
-            curr->_next = newNode;
-        }
         curr = curr->_next;
     }
 
+	newNode->_next = curr->_next;
+    curr->_next = newNode;
 	return iHead;
 }
 
@@ -82,8 +72,8 @@ int main()
 	head = InsertAtTheEnd(head, 20);
 	head = InsertAtTheEnd(head, 30);
 	DisplayLinkedList(head);
-
-    head = InsertAtGivenKey(head, 25);
+	std::cout << std::endl;
+    head = InsertAtGivenKey(head, 55);
 	DisplayLinkedList(head);
 	return 0;
 }
