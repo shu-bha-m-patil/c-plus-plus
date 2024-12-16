@@ -49,7 +49,7 @@ LinkedList* InsertAtEnd(LinkedList* iHead, int iValue)
     return iHead;
 }
 
-LinkedList* DeleteHead(LinkedList* iHead)
+LinkedList* DeleteTail(LinkedList* iHead)
 {
 	if(iHead == NULL) return nullptr;
 	if(iHead->_next == NULL) 
@@ -58,10 +58,16 @@ LinkedList* DeleteHead(LinkedList* iHead)
 		return nullptr;
 	}
 
-	LinkedList* headNext = iHead->_next;
-	iHead->_next->_prev = NULL;
-	delete iHead; iHead = nullptr;
-	return headNext;
+    LinkedList* tail = nullptr;
+    LinkedList* curr = iHead;
+    while (curr != NULL)
+    {
+        tail = curr->_prev;
+        curr = curr->_next;
+    }
+    delete tail->_next;
+    tail->_next = nullptr;
+	return iHead;
 }
 
 int main()
@@ -73,6 +79,6 @@ int main()
     head = InsertAtEnd(head, 4);
     head = InsertAtEnd(head, 5);
     Display(head);
-    head = DeleteHead(head);
+    head = DeleteTail(head);
     Display(head);
 }
