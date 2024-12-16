@@ -15,32 +15,37 @@ struct LinkedList
 void Display(LinkedList* iHead)
 {
     LinkedList* curr = iHead;
-    if(curr == NULL) return;
-    do
+    while(curr != nullptr)
     {
         std::cout << curr->_data << " ";
         curr = curr->_next;
-    }while (curr != iHead);
+    }
     std::cout << std::endl;
 }
 
 LinkedList* InsertAtEnd(LinkedList* iHead, int iValue)
 {
     LinkedList* newNode = new LinkedList(iValue);
-    if(iHead == NULL)
+    if(iHead == NULL) return newNode;
+
+    if(iHead->_next == nullptr)
     {
-        newNode->_next = newNode;
-        newNode->_prev = newNode;
-        iHead = newNode;
+        iHead->_next = newNode;
+        newNode->_prev = iHead;
         return iHead;
     }
 
-    LinkedList* tail = iHead->_prev;
+    LinkedList* curr = iHead;
+    LinkedList* tail = nullptr;
+    while (curr != nullptr)
+    {
+        tail = curr->_prev;
+        curr = curr->_next;
+    }
+    tail = tail->_next;
+
     tail->_next = newNode;
     newNode->_prev = tail;
-
-    newNode->_next = iHead;
-    iHead->_prev = newNode;
 
     return iHead;
 }

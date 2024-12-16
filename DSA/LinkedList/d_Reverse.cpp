@@ -15,12 +15,11 @@ struct LinkedList
 void Display(LinkedList* iHead)
 {
     LinkedList* curr = iHead;
-    if(curr == NULL) return;
-    do
+    while(curr != NULL)
     {
         std::cout << curr->_data << " ";
         curr = curr->_next;
-    }while (curr != iHead);
+    }
     std::cout << std::endl;
 }
 
@@ -29,37 +28,36 @@ LinkedList* InsertAtEnd(LinkedList* iHead, int iValue)
     LinkedList* newNode = new LinkedList(iValue);
     if(iHead == NULL)
     {
-        newNode->_next = newNode;
-        newNode->_prev = newNode;
         iHead = newNode;
         return iHead;
     }
 
-    LinkedList* tail = iHead->_prev;
-    tail->_next = newNode;
-    newNode->_prev = tail;
-
-    newNode->_next = iHead;
-    iHead->_prev = newNode;
-
+    LinkedList* curr = iHead;
+    while (curr->_next != NULL)
+    {
+        curr = curr->_next;
+    }
+    
+    
+    curr->_next = newNode;
+    newNode->_prev = curr;
     return iHead;
 }
 
-LinkedList* DeleteHead(LinkedList* iHead)
+LinkedList* Reverse(LinkedList* iHead)
 {
-	return iHead->_next;
-		
-	if(iHead == NULL) return nullptr;
-	if(iHead->_next == NULL) 
-	{
-		delete iHead; iHead = nullptr;
-		return nullptr;
-	}
+    if(iHead == NULL || iHead->_next == NULL) return iHead;
 
-	LinkedList* headNext = iHead->_next;
-	iHead->_next->_prev = NULL;
-	delete iHead; iHead = nullptr;
-	return headNext;
+    LinkedList* prevNode = NULL;
+    LinkedList* curr = iHead;
+    while (curr != NULL)
+    {
+        prevNode = curr->_prev;
+        curr->_prev = curr->_next;
+        curr->_next = prevNode;
+        curr = curr->_prev;
+    }
+    return prevNode->_prev;    
 }
 
 int main()
@@ -71,6 +69,6 @@ int main()
     head = InsertAtEnd(head, 4);
     head = InsertAtEnd(head, 5);
     Display(head);
-    head = DeleteHead(head);
+    head = Reverse(head);
     Display(head);
 }
