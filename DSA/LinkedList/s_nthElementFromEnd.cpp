@@ -71,6 +71,32 @@ void PrintNthelementFromLast(LinkedList* iHead, int KthElement)
     std::cout << "The " << KthElement << "th element from last is " << curr->_iData << std::endl;
 }
 
+void PrintNthelementFromLast1(LinkedList* iHead, int KthElement)
+{
+	int count = CountLinkedListNodes(iHead);
+	if(KthElement > count)
+		return;
+
+	int currCount = 0;
+	LinkedList* second = iHead;
+	LinkedList* first = iHead;
+	while (currCount != KthElement)
+	{
+		second = second->_next;
+		++currCount;
+	}
+	
+	while (second != nullptr)
+	{
+		second = second->_next;
+		first = first->_next;
+	}
+	
+
+    std::cout << "The " << KthElement << "th element from last is " << first->_iData << std::endl;
+}
+
+
 int main()
 {
 	LinkedList* head = NULL;
@@ -80,7 +106,7 @@ int main()
 	head = InsertAtTheEnd(head, 4);
 	head = InsertAtTheEnd(head, 5);
 	DisplayLinkedList(head);
-    PrintNthelementFromLast(head, 1);
+    PrintNthelementFromLast1(head, 5);
 	std::cout << std::endl;
 	return 0;
 }
