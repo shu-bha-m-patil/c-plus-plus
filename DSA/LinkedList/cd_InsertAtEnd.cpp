@@ -8,7 +8,7 @@ struct LinkedList
     LinkedList(int iValue)
     {
         _data = iValue;
-        _prev = _next = NULL;
+        _prev = _next = this;
     }
 };
 
