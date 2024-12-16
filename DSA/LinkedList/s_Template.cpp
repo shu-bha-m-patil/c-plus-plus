@@ -30,7 +30,7 @@ LinkedList* InsertAtTheEnd(LinkedList* iHead, int iValue)
 	return iHead;
 }
 
-void DisplayLinkedList(LinkedList* iHead)
+void Display(LinkedList* iHead)
 {
 	LinkedList* node = iHead;
 	while (NULL != node)
@@ -38,6 +38,7 @@ void DisplayLinkedList(LinkedList* iHead)
 		std::cout << node->_iData << " ";
 		node = node->_next;
 	}
+    std::cout << std::endl;
 }
 
 int main()
@@ -46,6 +47,6 @@ int main()
 	head = InsertAtTheEnd(head, 30);
 	head = InsertAtTheEnd(head, 20);
 	head = InsertAtTheEnd(head, 10);
-	DisplayLinkedList(head);
+	Display(head);
 	return 0;
 }
