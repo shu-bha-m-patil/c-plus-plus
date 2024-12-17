@@ -58,16 +58,16 @@ LinkedList* SwappingPointerReverse(LinkedList* iHead)
     return prev;
 }
 
-LinkedList* TailReverseRecurcive(LinkedList* curr, LinkedList*& oHead)
+LinkedList* TailReverseRecurcive(LinkedList* curr, LinkedList*& ohead)
 {
     if(curr->_next == nullptr)
     {
-        oHead = curr;
+		ohead = curr;
         return curr;
     }
 
-	LinkedList* tail = TailReverseRecurcive(curr->_next, oHead);
-    tail->_next = curr;
+	LinkedList* tail = TailReverseRecurcive(curr->_next, ohead);
+	tail->_next = curr;
     return curr;
 }
 
