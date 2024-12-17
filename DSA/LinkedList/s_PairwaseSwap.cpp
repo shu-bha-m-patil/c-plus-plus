@@ -74,7 +74,6 @@ int main()
 	head = InsertAtTheEnd(head, 3);
 	head = InsertAtTheEnd(head, 4);
 	head = InsertAtTheEnd(head, 5);
-	head = InsertAtTheEnd(head, 6);
 	Display(head);
     head = SwapPairWise(head);
 	Display(head);
