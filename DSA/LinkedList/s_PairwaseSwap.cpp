@@ -41,6 +41,29 @@ void Display(LinkedList* iHead)
     std::cout << std::endl;
 }
 
+LinkedList* SwapPairWise(LinkedList* iHead)
+{
+    LinkedList* curr = iHead;
+    LinkedList* prev = nullptr;
+    LinkedList* next = nullptr;
+    LinkedList* newHead = nullptr;
+    if(curr->_next != nullptr)
+        newHead = curr->_next;
+
+    while (curr != nullptr && curr->_next != nullptr)
+    {
+        next = curr->_next;
+        curr->_next = curr->_next->_next;
+        next->_next = curr;
+        if(prev)
+            prev->_next = next;
+        prev = curr;
+        curr = curr->_next;
+    }
+    return newHead;
+}
+
+
 int main()
 {
     // 1. Using unordered_set
@@ -52,6 +75,8 @@ int main()
 	head = InsertAtTheEnd(head, 4);
 	head = InsertAtTheEnd(head, 5);
 	head = InsertAtTheEnd(head, 6);
+	Display(head);
+    head = SwapPairWise(head);
 	Display(head);
 	return 0;
 }
