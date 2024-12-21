@@ -5,7 +5,7 @@ void PrintNextGreaterElement(int *arr, int n)
 {
     std::stack<int> stack;
     stack.push(n - 1);
-    std::cout << "The span is " << 1 << std::endl;
+    std::cout << "The next grater Element is " << -1 << std::endl;
     for (int i = n - 2; i >= 0; i--)
     {
         while (!stack.empty() && arr[stack.top()] <= arr[i])
@@ -13,7 +13,7 @@ void PrintNextGreaterElement(int *arr, int n)
             stack.pop();
         }
         if (stack.empty())
-            std::cout << "The next grater Element is  " << arr[0] << std::endl;
+            std::cout << "The next grater Element is " << arr[0] << std::endl;
         else
             std::cout << "The next grater Element is " << arr[stack.top()] << std::endl;
         stack.push(i);

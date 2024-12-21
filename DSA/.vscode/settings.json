@@ -46,6 +46,9 @@
         "xhash": "cpp",
         "unordered_set": "cpp",
         "list": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "deque": "cpp",
+        "ranges": "cpp",
+        "span": "cpp"
     }
 }
