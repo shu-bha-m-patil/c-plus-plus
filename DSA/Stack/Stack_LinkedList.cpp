@@ -1,6 +1,5 @@
 
 #include <iostream>
-
 struct LinkedList
 {
     int _data;
