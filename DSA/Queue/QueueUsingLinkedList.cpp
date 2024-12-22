@@ -17,11 +17,13 @@ struct QueueUsingLinkedList
 {
     LinkedList* _head;
     LinkedList* _tail;
+    int _size;
 
     QueueUsingLinkedList()
     {
         _head = nullptr;
         _tail = nullptr;
+        _size = 0;
     }
 
     void enque(int iVal)
@@ -39,6 +41,7 @@ struct QueueUsingLinkedList
             _tail->_next = newNode;
             _tail = _tail->_next;
         }
+        _size++;
     }
     
     void deque()
@@ -51,7 +54,13 @@ struct QueueUsingLinkedList
             _head = _head->_next;
             std::cout << "The pop element is " << temp->_data << std::endl;
             delete temp;
+            _size--;
         }
+    }
+
+    int GetSize()
+    {
+        return _size;
     }
 
     void PrintQueue()
