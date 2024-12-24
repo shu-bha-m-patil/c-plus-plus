@@ -34,18 +34,23 @@ void BuildBST(BST*& iRoot, int* iArray, size_t iSize)
         AddChild(iRoot, iArray[i]);
 }
 
+int MaxDia = 0;
 int Height(BST* iRoot)
 {
     if(iRoot == nullptr) return 0;
     if(iRoot->_left == nullptr && iRoot->_right == nullptr) return 1;
 
-    return std::max(Height(iRoot->_left), Height(iRoot->_right)) + 1;
+    int lh = Height(iRoot->_left);
+    int rh = Height(iRoot->_right);
+
+    //MaxDia = std::max(MaxDia, lh + rh + 1);
+
+    return std::max(lh, rh) + 1;
 }
 
 int maxDia(BST* iRoot)
 {
     if(iRoot == nullptr) return 0;
-
     int rootNodeDia =  Height(iRoot->_left) + Height(iRoot->_right) + 1;
     int leftNodeDia = maxDia(iRoot->_left);
     int rightNodeDia = maxDia(iRoot->_right);
@@ -65,4 +70,5 @@ int main()
     BST* root = nullptr;
     BuildBST(root, arr, size);
     std::cout << "The max dia is " << maxDia(root) << std::endl;
+    std::cout << "The max dia is " << MaxDia << std::endl;
 }
