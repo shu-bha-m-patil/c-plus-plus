@@ -1,5 +1,5 @@
 #include <iostream>
-#include <unordered_set>
+#include <map>
 
 struct BST
 {
@@ -31,19 +31,13 @@ void BuildBST(BST*& iRoot, int* iArray, size_t iSize)
         AddChild(iRoot, iArray[i]);
 }
 
-bool IsSumPresent(BST* iRoot, int sum, std::unordered_set<int>& set)
+void VerticalDist(BST* iRoot, int iHD, std::map<int, int> &map)
 {
-    if(iRoot == nullptr) return false;
+    if(iRoot == nullptr) return;
 
-    if(IsSumPresent(iRoot->_left, sum, set))
-        return true;
-
-    if(set.find(sum - iRoot->_data) != set.end()) 
-        return true;
-    else
-        set.insert(iRoot->_data);
-
-    return IsSumPresent(iRoot->_right, sum, set); 
+    VerticalDist(iRoot->_left, iHD - 1, map);
+    map[iHD] += iRoot->_data;
+    VerticalDist(iRoot->_right, iHD + 1, map);
 }
 
 int main()
@@ -52,10 +46,13 @@ int main()
     int arr[size] = {10,8,4,9,20,11,30,25};
     BST* root = nullptr;
     BuildBST(root, arr, size);
-    int sum = 31;
-    std::unordered_set<int> set;
-    if(IsSumPresent(root, sum, set))
-        std::cout << "THe sum is present" << std::endl;
-    else
-        std::cout << "THe sum is not present" << std::endl;
+
+    std::map<int, int> map;
+    int hd = 0;
+    VerticalDist(root, hd, map);
+
+    for (auto hd : map)
+        std::cout << hd.second << " ";
+    
+    std::cout << std::endl;
 }

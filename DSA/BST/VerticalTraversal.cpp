@@ -1,5 +1,6 @@
 #include <iostream>
-#include <unordered_set>
+#include <map>
+#include <vector>
 
 struct BST
 {
@@ -31,19 +32,22 @@ void BuildBST(BST*& iRoot, int* iArray, size_t iSize)
         AddChild(iRoot, iArray[i]);
 }
 
-bool IsSumPresent(BST* iRoot, int sum, std::unordered_set<int>& set)
+void VerticalTraversal(BST* iRoot, int iHD, std::map<int, std::vector<int>> &map)
 {
-    if(iRoot == nullptr) return false;
+    if(iRoot == nullptr) return;
 
-    if(IsSumPresent(iRoot->_left, sum, set))
-        return true;
-
-    if(set.find(sum - iRoot->_data) != set.end()) 
-        return true;
+    std::map<int, std::vector<int>>::iterator it = map.find(iHD);
+    if(it == map.end())
+    {
+        std::vector<int> vertNodes;
+        vertNodes.push_back(iRoot->_data);
+        map[iHD] = vertNodes;
+    }
     else
-        set.insert(iRoot->_data);
+        it->second.push_back(iRoot->_data);
 
-    return IsSumPresent(iRoot->_right, sum, set); 
+    VerticalTraversal(iRoot->_left, iHD - 1, map);
+    VerticalTraversal(iRoot->_right, iHD + 1, map);
 }
 
 int main()
@@ -52,10 +56,15 @@ int main()
     int arr[size] = {10,8,4,9,20,11,30,25};
     BST* root = nullptr;
     BuildBST(root, arr, size);
-    int sum = 31;
-    std::unordered_set<int> set;
-    if(IsSumPresent(root, sum, set))
-        std::cout << "THe sum is present" << std::endl;
-    else
-        std::cout << "THe sum is not present" << std::endl;
+
+    std::map<int, std::vector<int>> map;
+    int hd = 0;
+    VerticalTraversal(root, hd, map);
+
+    for (auto hd : map)
+    {
+        for (size_t i = 0; i < hd.second.size(); i++)
+            std::cout << hd.second[i] << " ";
+        std::cout << std::endl;
+    }
 }

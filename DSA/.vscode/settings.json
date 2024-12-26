@@ -51,6 +51,8 @@
         "ranges": "cpp",
         "span": "cpp",
         "queue": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "map": "cpp",
+        "xtree": "cpp"
     }
 }
