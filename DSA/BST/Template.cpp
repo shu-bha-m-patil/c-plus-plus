@@ -5,23 +5,23 @@ struct BST
     int _data;
     BST* _left;
     BST* _right;
-    int _lCount;
 
-    BST(int iData) : _data(iData), _left(nullptr), _right(nullptr), _lCount(0) {}
+    BST(int iData) : _data(iData), _left(nullptr), _right(nullptr) {}
 };
 
-void AddChild(BST*& iRoot, int iData)
+BST* AddChild(BST*& iRoot, int iData)
 {
     if(iRoot == nullptr)
     {
         iRoot = new BST(iData);
-        return;
+        return iRoot;
     }
 
     if(iData < iRoot->_data)
-        AddChild(iRoot->_left, iData);
+        iRoot->_left = AddChild(iRoot->_left, iData);
     else if(iRoot->_data < iData)
-        AddChild(iRoot->_right, iData);
+        iRoot->_right = AddChild(iRoot->_right, iData);
+    return iRoot;
 }
 
 void BuildBST(BST*& iRoot, int* iArray, size_t iSize)
