@@ -39,8 +39,7 @@ void PrintTopView(BST* iRoot, int iHD, std::map<int , int>& map)
     while (!queue.empty())
     {
         std::pair<int, BST*> pair = queue.front(); queue.pop();
-        //if(map.find(pair.first) == map.end())
-            map[pair.first] = pair.second->_data;
+        map[pair.first] = pair.second->_data;
 
         if(pair.second->_left) queue.push({pair.first - 1, pair.second->_left});
         if(pair.second->_right) queue.push({pair.first + 1, pair.second->_right});

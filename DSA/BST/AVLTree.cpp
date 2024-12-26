@@ -83,9 +83,9 @@ Node* insert(Node* node, int value) {
 
 void preOrder(Node* root) {
     if (root) {
-        std::cout << root->data << " ";
         preOrder(root->left);
         preOrder(root->right);
+        std::cout << root->data << " ";
     }
 }
 
