@@ -8,6 +8,25 @@ struct TreeNode {
     TreeNode(int val) : data(val), left(nullptr), right(nullptr) {}
 };
 
+// Helper function to check BST property with range constraints
+bool isBSTHelper(TreeNode* node, int minValue, int maxValue) {
+    if (!node) 
+        return true; // An empty tree is a BST.
+
+    // Check if the current node's value violates the BST property.
+    if (node->data <= minValue || node->data >= maxValue) 
+        return false;
+
+    // Recursively check left and right subtrees with updated ranges.
+    return isBSTHelper(node->left, minValue, node->data) &&
+           isBSTHelper(node->right, node->data, maxValue);
+}
+
+// Main function to check if the tree is a BST
+bool isBST(TreeNode* root) {
+    return isBSTHelper(root, INT_MIN, INT_MAX);
+}
+
 // Example usage
 int main() {
     // Example of a BST
