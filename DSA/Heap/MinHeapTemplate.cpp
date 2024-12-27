@@ -15,25 +15,7 @@ struct MinHeap
     
     void HeapifyDown(int parent)
     {
-        if (_size == _cap) { std::cout << "Stack overflow" << std::endl;}
-
-        int leftChild = parent*2 + 1;
-        int rightChild = parent*2 + 2;
-        if(_arr[parent] > _arr[leftChild])
-        {
-            int tempData = _arr[parent];
-            _arr[parent] = _arr[leftChild];
-            _arr[leftChild] = tempData;
-            HeapifyUp(parent);
-        }
         
-        if(_arr[parent] > _arr[leftChild])
-        {
-            int tempData = _arr[parent];
-            _arr[parent] = _arr[leftChild];
-            _arr[leftChild] = tempData;
-            HeapifyUp(parent);
-        }
     }
 
     
