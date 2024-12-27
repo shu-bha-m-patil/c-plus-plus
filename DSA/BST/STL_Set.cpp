@@ -1,5 +1,7 @@
 #include <iostream>
 #include <memory>
+#include <set>
+
 
 enum Color { RED, BLACK };
 
@@ -164,6 +166,9 @@ int main() {
 
     std::cout << "Inorder Traversal of Red-Black Tree: ";
     mySet.print();
+
+    std::set<int>set;
+    set.begin();
 
     return 0;
 }
