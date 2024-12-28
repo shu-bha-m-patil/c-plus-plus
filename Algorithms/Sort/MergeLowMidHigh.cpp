@@ -1,10 +1,10 @@
 #include <iostream>
 #include <vector>
 
-void PrintArray(std::vector<int> iArr)
+void PrintArray(std::vector<int> iArr, int iSize)
 {
     std::cout << "The array elements are : ";
-    for (size_t i = 0; i < iArr.size(); i++)
+    for (size_t i = 0; i < iSize; i++)
         std::cout << iArr[i] << " ";
     std::cout << std::endl;
 }
@@ -14,8 +14,8 @@ void Merge(std::vector<int>& arr, int low, int mid, int high)
     const int ls = mid - low + 1;
     const int rs = high - mid;
     std::vector<int> lArr(ls); std::vector<int>rArr(rs);
-    for (size_t i = 0; i < ls; i++) { lArr[i] = arr[low + i];} PrintArray (lArr);
-    for (size_t i = 0; i < rs; i++) { rArr[i] = arr[mid + 1 + i];} PrintArray (rArr);
+    for (size_t i = 0; i < ls; i++) { lArr[i] = arr[low + i];} PrintArray (lArr, ls);
+    for (size_t i = 0; i < rs; i++) { rArr[i] = arr[mid + 1 + i];} PrintArray (rArr, rs);
     
     int l = 0, r = 0, i = low;
     for (i; i < arr.size(); i++)
@@ -28,24 +28,17 @@ void Merge(std::vector<int>& arr, int low, int mid, int high)
     while (r < rs) { arr[i] = rArr[r]; r++; i++; }
 }
 
-void MergeSort(std::vector<int>&arr, int low, int high)
-{
-    if(low >= high) return;
-
-    int mid = low + (high - low) / 2;
-    MergeSort(arr, low, mid);
-    MergeSort(arr, mid + 1, high);
-    Merge(arr, low, mid, high);
-    PrintArray (arr);
-}
-
 int main()
 {
-    std::vector<int>arr = {11,15,20,2,8,10,15};
-    PrintArray (arr);
+    std::vector<int>arr = {10,15,20,40,8,11,15};
+    int size = sizeof(arr) / sizeof(int);
+    int low = 0;
+    int mid = 3;
+    int high = 6;
+    PrintArray (arr, size);
 
-    MergeSort(arr, 0, 6);
-    PrintArray (arr);
+    Merge(arr, low, mid, high);
+    PrintArray (arr, size);
     
     return 0;
 }
