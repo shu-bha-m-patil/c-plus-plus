@@ -10,7 +10,7 @@ void PrintArray(int* iArr, int iSize)
 
 int main()
 {
-    int arr1[] = {10, 10 ,20,20,40,60};
+    int arr1[] = {10,10,20,20,40,60};
     int size1 = sizeof(arr1) / sizeof(int);
     PrintArray (arr1, size1);
     
