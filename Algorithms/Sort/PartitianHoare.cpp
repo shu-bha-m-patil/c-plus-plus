@@ -10,21 +10,23 @@ void PrintArray(int* iArr, int iSize)
 
 int HoarePartitian(int* arr, int l, int h, int p)
 {
-    int li = l, ri = h;
+    int li = l - 1, ri = h + 1;
     int pivot = arr[p];
     while (true)
     {
-        while (arr[li] < pivot)
+        do
         {
             li++;
         }
+        while (arr[li] < pivot);
 
-        while (arr[ri] > pivot)
+        do
         {
             ri--;
         }
+        while (arr[ri] > pivot);
         
-        if(li >= ri) break;
+        if(li > ri) break;
 
         int td = arr[li];
         arr[li] = arr[ri];
