@@ -19,7 +19,8 @@ int main()
     PrintArray (arr2, size2);
     
     // Merge two sorted sort
-    const int size = size1 + size2;
+    //const int size = size1 + size2;
+    const int size = 10;
     int arr[size];
     int i1 = 0;
     int i2 = 0;
