@@ -45,9 +45,7 @@ int main()
     int minDiff = INT_MAX;
     int k = 3;
     for (size_t i = k - 1; i < arr.size(); i++)
-    {
         minDiff = std::min(minDiff, arr[i] - arr[i - (k - 1)]);
-    }
     
     std::cout << "The min difference is " << minDiff << std::endl;
     return 0;
