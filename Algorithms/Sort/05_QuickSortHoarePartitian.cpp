@@ -38,7 +38,11 @@ void QuickSort(std::vector<int>& arr, int l, int h)
 {
     if(l >= h) return;
         int p = HoareParitian(arr, l, h); PrintArray(arr); // p - partitianIndex 
-    QuickSort(arr, l, p);
+        
+    // p - 1 -> This case is different in lomuto partitian  
+    // -> because all the smaller elements are on left of pivote and 
+    // p + 1 -> larger elements are on right of pivote 
+    QuickSort(arr, l, p); 
     QuickSort(arr, p + 1, h);
 }
 

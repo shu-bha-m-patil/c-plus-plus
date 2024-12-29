@@ -1,23 +1,19 @@
 #include <iostream>
+#include <vector>
 
-void PrintArray(int* iArr, int iSize)
+void PrintArray(std::vector<int> arr)
 {
     std::cout << "The array elements are : ";
-    for (size_t i = 0; i < iSize; i++)
-        std::cout << iArr[i] << " ";
+    for (size_t i = 0; i < arr.size(); i++)
+        std::cout << arr[i] << " ";
     std::cout << std::endl;
 }
 
 int main()
 {
-    int arr[] = {10,8,20,5};
-    int size = sizeof(arr) / sizeof(int);
-    PrintArray (arr, size);
+    std::vector<int> arr = {9,20,30,60,40,50,20,10,5,11};
+    PrintArray (arr);
     
-    // Bubble sort
-
-
-    PrintArray (arr, size);
     return 0;
 }
 
