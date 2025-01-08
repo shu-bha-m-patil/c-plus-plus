@@ -2,6 +2,8 @@
 #include <vector>
 #include <queue>
 
+const int v = 6;
+
 void AddEdge(std::vector<int>* adjList, int u, int v)
 {
     adjList[u].push_back(v);
@@ -21,7 +23,7 @@ void PrintGraph(std::vector<int>* adjList, int size)
     }
 }
 
-void BFS(std::vector<int>* adjList, int v, int s)
+void BFS(std::vector<int>* adjList, int s)
 {
     bool visited[v + 1];
     for (size_t i = 0; i < v; i++)
@@ -53,7 +55,6 @@ void BFS(std::vector<int>* adjList, int v, int s)
 
 int main()
 {
-    const int v = 6;
     std::vector<int> adjList[v];
     AddEdge(adjList, 0,1);
     AddEdge(adjList, 0,2);
@@ -64,6 +65,6 @@ int main()
     AddEdge(adjList, 4,5);
     PrintGraph(adjList, v);
 
-    BFS(adjList, v, 0);
+    BFS(adjList, 0);
     return 0;
 }

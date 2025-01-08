@@ -2,6 +2,8 @@
 #include <vector>
 #include <queue>
 
+const int v = 6;
+
 void AddEdge(std::vector<int>* adjList, int u, int v)
 {
     adjList[u].push_back(v);
@@ -27,7 +29,7 @@ void PrintShortDist(int* distArr, int size)
         std::cout << i << "-" << distArr[i] << " ";
 }
 
-void DetectCycle(std::vector<int>* adjList, int v, int s)
+void DetectCycle(std::vector<int>* adjList, int s)
 {
     bool visited[v];
     for (size_t i = 0; i < v; i++)
@@ -40,8 +42,8 @@ void DetectCycle(std::vector<int>* adjList, int v, int s)
     int prevVer = -1;
     while (!q.empty())
     {
-        v = q.front(); q.pop();
-        for(int u : adjList[v])
+        int ver = q.front(); q.pop();
+        for(int u : adjList[ver])
         {
             if(visited[u] == false)
             {
@@ -54,7 +56,7 @@ void DetectCycle(std::vector<int>* adjList, int v, int s)
                     std::cout << "Loop is present" << std::endl;
             }
         }
-        prevVer = v;
+        prevVer = ver;
     }
 }
 
@@ -65,7 +67,6 @@ void DetectCycle(std::vector<int>* adjList, int v, int s)
 
 int main()
 {
-    const int v = 6;
     std::vector<int> adjList[v];
     AddEdge(adjList, 0,1);
     AddEdge(adjList, 1,2);
@@ -75,7 +76,7 @@ int main()
     AddEdge(adjList, 4,5);
     PrintGraph(adjList, v);
 
-    DetectCycle(adjList, v, 0);
+    DetectCycle(adjList, 0);
 
     return 0;
 }

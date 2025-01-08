@@ -68,19 +68,18 @@ void PrintShortestDist(std::vector<int>* adjList, int s)
         visited[i] = false;
     
     std::queue<int>q;
-    visited[s] = true;
     q.push(s);
-
+    visited[s] = true;
     while (!q.empty())
     {
-        int ver = q.front(); q.pop();
-        for(int u : adjList[ver])
+        int v = q.front(); q.pop();
+        for(int u : adjList[v])
         {
             if(visited[u] == false)
             {
                 visited[u] = true;
+                distArr[u] = distArr[v] + 1;
                 q.push(u);
-                distArr[u] = distArr[ver] + 1;
             }
         }
     }

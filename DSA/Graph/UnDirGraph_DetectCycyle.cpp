@@ -2,6 +2,8 @@
 #include <vector>
 #include <queue>
 
+const int v = 6;
+
 void AddEdge(std::vector<int>* adjList, int v, int u)
 {
     adjList[v].push_back(u);
@@ -20,7 +22,7 @@ void PrintGraph(std::vector<int>* adjList, int size)
     }
 }
 
-void DetectCycleInBFS(std::vector<int>* adjList, std::vector<bool>& visited, int s, int v)
+void DetectCycleInBFS(std::vector<int>* adjList, std::vector<bool>& visited, int s)
 {
     int localVis[v];
     for (size_t i = 0; i < v; i++)
@@ -51,7 +53,7 @@ void DetectCycleInBFS(std::vector<int>* adjList, std::vector<bool>& visited, int
 }
 
 
-void DetectCycleBFS(std::vector<int>* adjList, int v)
+void DetectCycleBFS(std::vector<int>* adjList)
 {
     std::vector<bool> visited(v);
     for (size_t i = 0; i < v; i++)
@@ -61,13 +63,13 @@ void DetectCycleBFS(std::vector<int>* adjList, int v)
     {
         if(visited[i] == false)
         {
-            DetectCycleInBFS(adjList, visited, i, v);
+            DetectCycleInBFS(adjList, visited, i);
         }
     }
 }
 
 
-void DetectCycleInDFS(std::vector<int>* adjList, std::vector<bool>& visited, int s, int v)
+void DetectCycleInDFS(std::vector<int>* adjList, std::vector<bool>& visited, int s)
 {
     int localVis[v];
     for (size_t i = 0; i < v; i++)
@@ -112,7 +114,7 @@ void DetectCycleInDFS(std::vector<int>* adjList, std::vector<bool>& visited, std
     }
 }
 
-void DetectCycleDFS(std::vector<int>* adjList, int v)
+void DetectCycleDFS(std::vector<int>* adjList)
 {
     std::vector<bool> visited(v);
     for (size_t i = 0; i < v; i++)
@@ -139,7 +141,6 @@ void DetectCycleDFS(std::vector<int>* adjList, int v)
 //                    5
 int main()
 {
-    int v = 6;
     std::vector<int> adjList[v];
     AddEdge(adjList, 0,1);
     AddEdge(adjList, 2,1);
@@ -148,7 +149,7 @@ int main()
     AddEdge(adjList, 4,5);
     AddEdge(adjList, 5,3);
     PrintGraph(adjList, v);
-    DetectCycleBFS(adjList, v);
-    DetectCycleDFS(adjList, v);
+    DetectCycleBFS(adjList);
+    DetectCycleDFS(adjList);
     return 0;
 }
