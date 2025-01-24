@@ -9,6 +9,7 @@ int main()
 
     std::string str1 = "abc";
     std::string str2 = "abc";
+    
     int res = str1.compare(str2);
     if(res < 0)
         std::cout << "Lesser" << std::endl;
