@@ -11,7 +11,7 @@ void computeLPSArray(const std::string& pattern, std::vector<int>& lps) {
     while (i < m) 
     {
         if (pattern[i] == pattern[length]) 
-        {
+        { 
             length++;
             lps[i] = length;
             i++;

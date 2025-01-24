@@ -7,7 +7,7 @@ bool Anagram1(std::string str1, std::string str2)
     std::sort(str2.begin(), str2.end());
     return str1 == str2;
 }
-
+ 
 bool Anagram2(std::string str1, int l, int h, std::string str2)
 {
     const int CHAR = 256;

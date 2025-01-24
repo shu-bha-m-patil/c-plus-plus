@@ -11,7 +11,7 @@ int main()
         arr[str[i] - 'a']++;
     
     for (size_t i = 0; i <= 26; i++)
-    {
+    { 
         if(arr[i] > 0)
         {
             std::cout << (char)(i + 'a') << "-" << arr[i] << " ";

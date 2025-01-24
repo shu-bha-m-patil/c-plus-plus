@@ -11,7 +11,7 @@ void computeLPSArray(const std::string& pat, std::vector<int>& lps)
     while (i < pLen)
     {
         if(pat[i] == pat[len])
-        {
+        { 
             len++;
             lps[i] = len;
             i++;

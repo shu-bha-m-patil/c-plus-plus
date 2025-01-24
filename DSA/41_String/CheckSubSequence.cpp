@@ -8,9 +8,9 @@ bool SubSequence(std::string str1, std::string str2)
     {
         if(str1[i1] == str2[i2]) {i1++; i2++;}
         else{i1++;}
-    }
+    } 
     
-    return i2 == s2;
+    return i2 == s2; 
 }
 
 int main()
